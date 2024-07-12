@@ -1,18 +1,14 @@
 #include<iostream>
 using namespace std;
 void insertionsort(int ar[],int n){
-	int i=1;
-	while(i<n){
+	for(int i=1;i<n;i++){
+		int key=ar[i];
 		int j=i-1;
-		while(j<n){
-			if(ar[j]>ar[j]){
-				int t=ar[j];
-				ar[j]=ar[i];
-				ar[i]=t;
-			}
-		j++;
+		while(j>=0 and ar[j]>key){
+			ar[j+1]=ar[j];
+			j--;
 		}
-	i++;
+		ar[j+1]=key;
 	}
 }
 int main(){
