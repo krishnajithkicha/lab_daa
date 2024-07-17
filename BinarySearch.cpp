@@ -2,9 +2,9 @@
 using namespace std;
 int BinarySearch(int ar[],int val,int LB,int UB){
 	int index=-1;
-	if(LB<UB){
+	if(LB<=UB){
 		int mid=(LB+UB)/2;
-		return index;
+	
 		if(ar[mid]==val){
 			return mid;
 		}
@@ -31,7 +31,7 @@ int main(){
 	int key;
 	cout<<"Enter the value to search:";
 	cin>>key;
-	int in=BinarySearch(ar,key,0,n-1);
+	int in=BinarySearch(ar,key,0,n);
 	if(in==-1){
 		cout<<"Element not found"<<endl;
 	}
