@@ -1,16 +1,21 @@
 #include<iostream>
 using namespace std;
 int BinarySearch(int ar[],int val,int LB,int UB){
-	int mid=(LB+UB)/2;
 	int index=-1;
-	if(ar[mid]==val){
-		index=mid;
-	}
-	if(ar[mid]>val){
-		BinarySearch(ar,val,LB,mid-1);
-	}
-	else if(ar[mid]<val){
-		BinarySearch(ar,val,mid+1,UB);
+	if(LB<UB){
+		int mid=(LB+UB)/2;
+		return index;
+		if(ar[mid]==val){
+			return mid;
+		}
+		if(ar[mid]>val){
+			UB=mid-1;
+			return BinarySearch(ar,val,LB,UB);
+		}
+		else if(ar[mid]<val){
+			LB=mid+1;
+			return BinarySearch(ar,val,LB,UB);
+		}
 	}
 	return index;
 }
@@ -26,7 +31,7 @@ int main(){
 	int key;
 	cout<<"Enter the value to search:";
 	cin>>key;
-	int in=BinarySearch(ar,key,0,n);
+	int in=BinarySearch(ar,key,0,n-1);
 	if(in==-1){
 		cout<<"Element not found"<<endl;
 	}
