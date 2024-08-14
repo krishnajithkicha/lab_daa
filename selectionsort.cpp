@@ -5,9 +5,10 @@ void selectionsort(int ar[],int n){
 		int min=i;
 		for(int j=i+1;j<n;j++){
 			if(ar[min]>ar[j]){
-				int t=ar[j];
+				min=j;
+				/*int t=ar[j];
 				ar[j]=ar[min];
-				ar[min]=t;
+				ar[min]=t;*/
 			}
 		}
 		if(min!=i){
