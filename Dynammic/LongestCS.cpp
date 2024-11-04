@@ -53,7 +53,7 @@ string LCS(string X,string Y){
 	return lcs;
 }
 int main(){
-	string A = "ABCBDAB";
+    string A = "ABCBDAB";
     string B = "BDCAB";
     string Lcs=LCS(A,B);
     cout<<"Subsequence:"<<Lcs<<endl;
