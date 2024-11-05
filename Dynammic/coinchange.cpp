@@ -13,9 +13,9 @@ int coinchange(int Ac[],int amount,int nc){
 	int F[amount+1];
 	F[0]=0;
 	for(int i=1;i<=amount;i++){
-		int temp=numeric_limits<int>::max();
+		int temp=numeric_limits<int>::max()-1;
 		int j=0;
-		while(j<=nc and i>=Ac[j]){
+		while(j<nc and i>=Ac[j]){
 			temp=min(F[i-Ac[j]],temp);
 			j++;
 		}
@@ -24,6 +24,22 @@ int coinchange(int Ac[],int amount,int nc){
 	for(int k=0;k<=amount;k++){
 		cout<<F[k]<<" ";
 	}
+	cout<<endl;
+	int bal=amount;
+	int B[amount+1];
+	int ind=0;
+	while(bal>0){
+		for(int j=0;j<nc;j++){
+			if(bal>=Ac[j] && F[bal]==F[bal-Ac[j]]+1){
+				B[ind++]=Ac[j];
+				bal-=Ac[j];
+			}
+		}	
+	}
+	cout<<"Coins used for minimum change: ";
+    for(int i=0;i<ind;i++) {
+        cout<<B[i]<<" ";
+    }
 	cout<<endl;
 	return F[amount];
 }
