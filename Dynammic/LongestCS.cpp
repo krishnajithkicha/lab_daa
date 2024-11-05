@@ -18,44 +18,48 @@ string LCS(string X,string Y){
 	for(int j=0;j<=n;j++){
 		F[0][j]=0;
 	}
-	for(int k=1;k<=m;k++){
-		for(int l=1;l<=n;l++){
-			if(X[k-1]==Y[l-1]){
-				F[k][l]=F[k-1][l-1]+1;
+	for(int i=1;i<m+1;i++){
+		for(int j=1;j<n+1;j++){
+			if(X[i-1]==Y[j-1]){
+				F[i][j]=F[i-1][j-1]+1;
 			}
 			else{
-				F[k][l]=max(F[k-1][l],F[k][l-1]);
+				F[i][j]=max(F[i-1][j],F[i][j-1]);
 			}
 		}
 	}
-	int i=m,j=n;
-	string lcs=" ";
-	while(i>0 && j>0){
-		if(X[i-1]==Y[j-1]){
-			lcs=X[i-1]+lcs;
-			i--;
-			j--;
-		}
-		else if(F[i-1][j]>F[i][j-1]){
-			i--;
-		}
-		else{
-			j--;
-		}
-	}
-	cout<<"length:"<<F[m][n]<<endl;
-	for(int o=0;o<=m;o++){
-		for(int p=0;p<=n;p++){
-			cout<<F[o][p]<<" ";
+	cout<<"The Longest Common Subsequence matrix:"<<endl;
+	for(int i=0;i<m+1;i++){
+		for(int j=0;j<n+1;j++){
+			cout<<F[i][j]<<" ";
 		}
 		cout<<endl;
 	}
+	string lcs=" ";
+	int k=m,l=n;
+	while(k>0 and l>0){
+		if(X[k-1]==Y[l-1]){
+			lcs=X[k-1]+lcs;
+			k--;
+			l--;
+		}
+		else if(F[k-1][l]>F[k][l-1]){
+			k--;
+		}
+		else{
+			l--;
+		}
+	}
+	cout<<"The length of the subsequence:"<<F[m][n]<<endl;
 	return lcs;
 }
 int main(){
-    string A = "ABCBDAB";
-    string B = "BDCAB";
-    string Lcs=LCS(A,B);
-    cout<<"Subsequence:"<<Lcs<<endl;
-    return 0;
+	string A,B;
+	cout<<"Enter the first string:";
+	cin>>A;
+	cout<<"Enter the second string:";
+	cin>>B;
+	string lcs=LCS(A,B);
+	cout<<"The Longest Common Subsequence is:"<<lcs<<endl;
+	return 0;
 }
