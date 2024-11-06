@@ -2,7 +2,7 @@
 using namespace std;
 int Fib(int n){
 	if(n<=1){
-		return n;
+		return 0;
 	}
 	int fib[n+1];
 	fib[0]=0;
@@ -10,7 +10,7 @@ int Fib(int n){
 	for(int i=2;i<n+1;i++){
 		fib[i]=fib[i-1]+fib[i-2];
 	}
-	return fib[n];
+	return fib[n-1];
 }
 int main(){
 	int n;
