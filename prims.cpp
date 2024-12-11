@@ -2,8 +2,6 @@
 #include <climits>
 using namespace std;
 
-
-
 // Function to find the vertex with the minimum key value
 int extractMin(int key[], bool inMST[], int nodes) {
     int minKey = INT_MAX, minIndex = -1;
