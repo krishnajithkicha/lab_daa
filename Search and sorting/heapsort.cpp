@@ -1,31 +1,50 @@
 #include<iostream>
 using namespace std;
-void Heapsort(int ar[],int n){
-	for(int i=n/2;i>0;i--){
-		Heapify(i,n,ar);
+
+void Swap(int i,int j,int Arr[]){
+	int temp=Arr[i];
+	Arr[i]=Arr[j];
+	Arr[j]=temp;
+}
+void Heapify(int Arr[],int i,int n){
+	int largest=i;   
+	int l=2*i+1;
+	int r=2*i+2;
+	if (Arr[largest]<Arr[l] and l<n){
+		largest=l;
 	}
-	for(int i=0;i>0;i--){
-		swap(0,n-1,ar);
-		Heapify((n-i)/2,n-i,ar);
+	if(Arr[largest]<Arr[r] and r<n){
+		largest=r;
+	}
+	if(largest!=i){
+		Swap(i,largest,Arr);
+		Heapify(Arr,largest,n);
+	}	
+}
+void Heapsort(int Arr[],int n){
+	for(int i=(n-2)/2;i>=0;i--){
+		Heapify(Arr,i,n);
+	}
+	for(int i=n-1;i>0;i--){
+		Swap(0,i,Arr);
+		Heapify(Arr,0,i);
 	}
 }
-void Heapify(int ar[],){
-	for(
-	int i=(n-2)/2; //index of last leaf node
-	if(ar[i]<ar[2*i+1]){
-		swap(i,2*i+1,ar);
-	}
-	else if(ar[i]<ar[2*i+2]){
-		swap(i,2*i+2,ar);
-	}
-	else{
-		
-		
-}
-void swap(int p,int q,int ar[]){
-	int temp=ar[p];
-	ar[p]=ar[q];
-	ar[q]=temp;
-}
+
 int main(){
 	
+	int len;
+	cout<<"Enter the length of array:";
+	cin>>len;
+	int Arr[len];
+	cout<<"Enter the elements:"<<endl;
+	for(int i=0;i<len;i++){
+		cin>>Arr[i];
+	}
+	Heapsort(Arr,len);
+	cout<<"HeapSorted Array:"<<endl;
+	for(int i=0;i<len;i++){
+		cout<<Arr[i]<<" ";
+	}
+	cout<<endl;
+}
